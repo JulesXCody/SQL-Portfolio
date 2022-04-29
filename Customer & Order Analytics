@@ -26,3 +26,9 @@ SELECT sum(quantity)*price as revenue
 ,product
 FROM BIT_DB.JanSales
 GROUP BY product
+
+#6. List all the products sold in Los Angeles in February, and include how many of each were sold.
+SELECT DISTINCT Product, SUM(Quantity)
+FROM BIT_DB.FebSales
+WHERE locatin LIKE '%Los Angeles%'
+GROUP BY Product
