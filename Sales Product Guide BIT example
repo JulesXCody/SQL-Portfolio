@@ -1,0 +1,5 @@
+SELECT COUNT(C.acctnum), AVG(F.Quantity)*price AS Revenue
+FROM BIT_DB.customers C
+INNER JOIN BIT_DB.FebSales F
+ON C.order_id = F.orderID
+WHERE F.Quantity > 2
