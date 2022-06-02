@@ -1,4 +1,5 @@
 CREATE TABLE clothing (ID INTEGER PRIMARY KEY, name TEXT, cost integer, color integer, quantity integer);
+
 INSERT INTO clothing VALUES (1, "jeans" , 20, "blue", 10);
 INSERT INTO clothing VALUES (2, "cargos" , 15, "green", 10);
 INSERT INTO clothing VALUES (3, "blouse", 8, "red", 12);
@@ -14,8 +15,34 @@ INSERT INTO clothing VALUES (12, "crocs", 5, "red", 11);
 INSERT INTO clothing VALUES (13, "skirts", 17, "purple", 13);
 INSERT INTO clothing VALUES (14, "dress", 16, "pink", 15);
 INSERT INTO clothing VALUES (15, "tanktops", 15, "red", 6);
-SELECT * FROM clothing;
-SELECT * FROM clothing ORDER BY cost;
-SELECT sum(quantity) FROM clothing GROUP BY name;
-SELECT name, cost FROM clothing WHERE cost > 8;
-SELECT name, cost FROM clothing WHERE cost > 8 AND color = 'pink';
+
+--How many items are in this table are in each category?
+
+SELECT category, Count(category) 
+FROM clothing
+GROUP BY category;
+
+--Order all items by the items that cost the most.
+
+SELECT * 
+FROM clothing 
+ORDER BY cost DESC;
+
+--How much does each item cost by color?
+
+SELECT sum(quantity) 
+FROM clothing 
+GROUP BY color;
+
+--Which clothing items cost less than 8 dollars?
+
+SELECT name, cost 
+FROM clothing 
+WHERE cost > 8;
+
+--Which clothing items cost less than 8 dollars and the color is pink?
+
+SELECT name, cost 
+FROM clothing 
+WHERE cost > 8 
+AND color = 'pink';
