@@ -42,19 +42,22 @@ INSERT INTO marvels VALUES(26, "Professor X", 58, "Good", "Male", 1.83, 86, "EUA
 
 SELECT * FROM marvels;
 
-#Find the average height for all Marvel characters
+--Find the average height for all Marvel characters
+
 SELECT ROUND(AVG(height_m)) 
 AS AVG_Height 
 FROM marvels
 GROUP BY height;
 
-#Find the name and thei popularity for all Marvel characters where their popularity is greater than 10.
+--Find the name and thei popularity for all Marvel characters where their popularity is greater than 10.
+
 SELECT name, popularity 
 FROM marvels 
 WHERE popularity > 10
 Order BY popularity DESC;
 
-#Add a new column for Marvel characters with an itelligence greater than 3 (call them smart), and greater than 5 (call them dumb)
+-- Add a new column for Marvel characters with an itelligence greater than 3 (call them smart), and greater than 5 (call them dumb)
+
 SELECT *,
 CASE WHEN intelligence > 3 THEN "Smart"
 WHEN intelligence <5 THEN "Dumb"
