@@ -1,0 +1,99 @@
+CREATE TABLE books 
+	(
+		book_id INT NOT NULL AUTO_INCREMENT,
+		title VARCHAR(100),
+		author_fname VARCHAR(100),
+		author_lname VARCHAR(100),
+		released_year INT,
+		stock_quantity INT,
+		pages INT,
+		PRIMARY KEY(book_id)
+	);
+
+INSERT INTO books (title, author_fname, author_lname, released_year, stock_quantity, pages)
+VALUES
+('The Namesake', 'Jhumpa', 'Lahiri', 2003, 32, 291),
+('Norse Mythology', 'Neil', 'Gaiman',2016, 43, 304),
+('American Gods', 'Neil', 'Gaiman', 2001, 12, 465),
+('Interpreter of Maladies', 'Jhumpa', 'Lahiri', 1996, 97, 198),
+('A Hologram for the King: A Novel', 'Dave', 'Eggers', 2012, 154, 352),
+('The Circle', 'Dave', 'Eggers', 2013, 26, 504),
+('The Amazing Adventures of Kavalier & Clay', 'Michael', 'Chabon', 2000, 68, 634),
+('Just Kids', 'Patti', 'Smith', 2010, 55, 304),
+('A Heartbreaking Work of Staggering Genius', 'Dave', 'Eggers', 2001, 104, 437),
+('Coraline', 'Neil', 'Gaiman', 2003, 100, 208),
+('What We Talk About When We Talk About Love: Stories', 'Raymond', 'Carver', 1981, 23, 176),
+("Where I'm Calling From: Selected Stories", 'Raymond', 'Carver', 1989, 12, 526),
+('White Noise', 'Don', 'DeLillo', 1985, 49, 320),
+('Cannery Row', 'John', 'Steinbeck', 1945, 95, 181),
+('Oblivion: Stories', 'David', 'Foster Wallace', 2004, 172, 329),
+('Consider the Lobster', 'David', 'Foster Wallace', 2005, 92, 343);
+
+**** Pull a list of authors next to their last name in one column with an alias and with a space in between.****
+SELECT CONCAT(author_fname, ' ',author_lname) AS 'Full Name' 
+  FROM books;
+
+
+***** Put a column of of authors first and last name give them aliases. Then a seperate column for both columns combined with a space and an alias.****
+SELECT author_fname AS First, author_lname AS Last,
+  CONCAT(author_fname, ' ',author_lname) AS 'Full Name' 
+   FROM books;
+
+
+***** Pull a list of authors next to their last name and the title of their book in one column with an alias and with the same symbol inbetween.*****
+SELECT CONCAT_WS(' - ', title, author_fname,author_lname) AS 'Book Info' 
+    FROM books;
+
+******* Shorten the title names of each books down to only 10 characters, give the results tabe an alias.********
+SELECT SUBSTRING(title, 1, 10) AS 'Short Titles'
+    FROM books;
+    
+SELECT SUBSTR()(title, 1, 10) AS 'Short Titles'
+    FROM books;
+    
+**** Shorten the title names of each books down to only 10 characters, give the results tabe an alias. Add ... after every shorten name title ****
+SELECT CONCAT
+(
+    SUBSTRING(title, 1, 10),
+'...') AS 'Short Title'
+         FROM books;
+
+
+**** Replace every title containing the letter lowercase 'L' and replace it with a number 7. Give the results and alias title.******
+SELECT REPLACE(title, 'l', 7) AS 'Fun'
+    FROM books;
+
+
+***Replace every title containing the letter lowercase 'L' and replace it with a number 7. Shorten the titles down to 10 letters. Give the results and alias title.****
+SELECT SUBSTRING
+(
+REPLACE(title, 'l', 7), 1, 10
+    ) AS 'FUN'
+       FROM books;
+
+**** Put the author's first name but spell it backwords.***
+SELECT REVERSE(author_fname)
+    FROM books;
+    
+****  Put the Title of all books but spell them backwords and only have 10 letters ******
+SELECT SUBSTRING(REVERSE(title), 1, 10)
+    FROM books;
+    
+    
+ *** select each title and the number of characters each title contains.*** 
+ SELECT title, CHAR_LENGTH(title) AS 'Title Length'
+    FROM books;
+    
+    
+**** select the count of each character of each author's last name and turn it into a sentence. *****
+SELECT CONCAT
+     (author_lname, ' is ', CHAR_LENGTH(author_lname), ' characters long')
+         FROM books;
+         
+*** Make each author's firtname in all caps and reverse their names.***
+SELECT UPPER(REVERSE(author_fname))
+      FROM books;
+      
+***** Replace the space in every title's name with a '->' ******
+SELECT REPLACE(CONCAT(title), ' ', '->')
+     FROM books;
