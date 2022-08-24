@@ -1,0 +1,50 @@
+CREATE TABLE students 
+(id INT AUTO_INCREMENT PRIMARY KEY, 
+first_name VARCHAR(100), 
+last_name VARCHAR(100));
+
+create table papers 
+(title varchar(100), 
+grade INT, 
+students_ID INT, 
+FOREIGN KEY (students_ID) References students(ID));
+
+INSERT INTO students (first_name) VALUES 
+('Caleb'), ('Samantha'), ('Raj'), ('Carlos'), ('Lisa');
+
+INSERT INTO papers (student_id, title, grade ) VALUES
+(1, 'My First Book Report', 60),
+(1, 'My Second Book Report', 75),
+(2, 'Russian Lit Through The Ages', 94),
+(2, 'De Montaigne and The Art of The Essay', 98),
+(4, 'Borges and Magical Realism', 89);
+
+
+***Pull up data that shows only student's name who have a completed their title/grade and order it from highest to lowest grades. No null results. ***
+select first_name, title, grade 
+FROM students 
+INNER JOIN papers 
+ON students.id = papers.students_id 
+ORDER BY grade DESC;
+
+***Pull up data that shows every student's name even if they have not completed their titles/grades.***
+SELECT first_name, title, grade
+    FROM students
+    LEFT JOIN papers
+      ON students.id = papers.students_id;
+    
+***Pull up data that shows every student's name even if they have not completed their titles/grades. But make the null for title 'Missing' and the null for grades a 0.
+SELECT
+    first_name,
+    IFNULL(title, 'MISSING'),
+    IFNULL(grade, 0)
+FROM students
+LEFT JOIN papers
+    ON students.id = papers.student_id;
+
+***Since certain students had mutiple titles so mutiple grades. Get the average grade for every student.***
+SELECT first_name, AVG(grade)
+    FROM students
+    LEFT JOIN papers
+      ON students.id = papers.students_id
+    GROUP BY first_name;
