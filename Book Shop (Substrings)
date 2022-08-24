@@ -97,3 +97,10 @@ SELECT UPPER(REVERSE(author_fname))
 ***** Replace the space in every title's name with a '->' ******
 SELECT REPLACE(CONCAT(title), ' ', '->')
      FROM books;
+     
+     
+***** Print a summary containing the title and year, for the most 3 recently released books.****
+SELECT DISTINCT CONCAT(title, ' - ', released_year)
+     FROM books
+     ORDER BY released_year DESC
+     LIMIT 3;
