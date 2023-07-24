@@ -12,7 +12,6 @@ WHERE Product='iPhone'
 #3. Select the customer account numbers for all the orders that were placed in February. 
 SELECT acctnum
 FROM BIT_DB.customers cust
-
 INNER JOIN BIT_DB.FebSales Feb
 ON cust.order_id=FEB.orderid
 
@@ -32,3 +31,20 @@ SELECT DISTINCT Product, SUM(Quantity)
 FROM BIT_DB.FebSales
 WHERE locatin LIKE '%Los Angeles%'
 GROUP BY Product
+
+# How this can answer business problems or help a business out.
+Example: First, I used SQL to calculate various customer metrics such as total spending, purchase frequency, and average order value. 
+These metrics are essential in identifying high-value customers who make frequent and substantial purchases, contributing significantly to
+the company's revenue.
+
+Next, I utilized SQL to implement clustering algorithms that group customers based on their purchasing behavior. I considered factors like
+the number of purchases in the last six months, total spending in the past year, and the recency of the last purchase. By applying these 
+clustering techniques, I categorized customers into distinct segments, such as loyal customers, occasional buyers, and one-time shoppers.
+
+Furthermore, I created SQL queries to generate visualizations, such as bar charts and pie charts, to illustrate the distribution of 
+customer segments and their corresponding contributions to the company's revenue.
+
+Finally, I presented the findings in a comprehensive report using Tableau / Power BI, highlighting the unique characteristics of each 
+customer segment and providing actionable recommendations for targeted marketing campaigns. By leveraging SQL to perform customer 
+segmentation, the e-commerce company gained valuable insights into its customer base, enabling them to tailor marketing strategies, 
+improve customer retention, and optimize revenue generation.
